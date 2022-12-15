@@ -1,4 +1,5 @@
 return {
+  { "ellisonleao/gruvbox.nvim" },
   {
     "kylechui/nvim-surround",
     tag = "*",

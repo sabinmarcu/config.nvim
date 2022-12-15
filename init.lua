@@ -19,7 +19,7 @@ local config = {
   },
 
   -- Set colorscheme to use
-  colorscheme = "default_theme",
+  colorscheme = "gruvbox",
 
   -- set vim options here (vim.<first_key>.<second_key> = value)
   options = {
