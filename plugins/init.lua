@@ -18,7 +18,15 @@ return {
     requires = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
-      "antoinemadec/FixCursorHold.nvim"
-    }
+      "antoinemadec/FixCursorHold.nvim",
+      "haydenmeade/neotest-jest",
+    },
+    config = function()
+      require('neotest').setup({
+        adapters = {
+          require('neotest-jest'),
+        }
+      })
+    end
   }
 }

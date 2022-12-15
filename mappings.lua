@@ -37,4 +37,17 @@ maps.n["<S-" .. modifierKey .. "-z>"] = { "<C-r>", desc = "Redo" }
 maps.n["<" .. modifierKey .. "-s>"] = { ":w!<cr>", desc = "Save override" }
 maps.i["<" .. modifierKey .. "-s>"] = { "<Esc>:w!<cr>", desc = "Save override for insert mode" }
 
+
+maps.n["<leader>ja"] = { "<cmd>lua require('neotest').run.attach()<cr>", desc = "Attach" }
+maps.n["<leader>ji"] = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", desc = "Run File" }
+maps.n["<leader>jF"] = { "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>",
+  desc = "Debug File" }
+maps.n["<leader>jl"] = { "<cmd>lua require('neotest').run.run_last()<cr>", desc = "Run Last" }
+maps.n["<leader>jL"] = { "<cmd>lua require('neotest').run.run_last({ strategy = 'dap' })<cr>", desc = "Debug Last" }
+maps.n["<leader>jn"] = { "<cmd>lua require('neotest').run.run()<cr>", desc = "Run Nearest" }
+maps.n["<leader>jN"] = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", desc = "Debug Nearest" }
+maps.n["<leader>jo"] = { "<cmd>lua require('neotest').output.open({ enter = true })<cr>", desc = "Output" }
+maps.n["<leader>jS"] = { "<cmd>lua require('neotest').run.stop()<cr>", desc = "Stop" }
+maps.n["<leader>js"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", desc = "Summary" }
+
 return maps;
