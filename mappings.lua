@@ -1,10 +1,10 @@
-local modifierKey
-
 if (vim.fn.has("macunix")) then
-  modifierKey = "D"
+  vim.g.modifierKey = "D"
 else
-  modifierKey = "C"
+  vim.g.modifierKey = "C"
 end
+
+local modifierKey = vim.g.modifierKey
 
 local maps = { i = {}, n = {}, v = {}, t = {}, c = {}, o = {}, [""] = {} }
 

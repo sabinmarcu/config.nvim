@@ -23,8 +23,8 @@ ResetGuiFont()
 
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set({ 'n', 'i' }, "<C-=>", function() ResizeGuiFont(1) end, opts)
-vim.keymap.set({ 'n', 'i' }, "<C-->", function() ResizeGuiFont(-1) end, opts)
-vim.keymap.set({ 'n', 'i' }, "<C-BS>", function() ResetGuiFont() end, opts)
+vim.keymap.set({ 'n', 'i' }, "<" .. vim.g.modifierKey .. "-=>", function() ResizeGuiFont(1) end, opts)
+vim.keymap.set({ 'n', 'i' }, "<" .. vim.g.modifierKey .. "-->", function() ResizeGuiFont(-1) end, opts)
+vim.keymap.set({ 'n', 'i' }, "<" .. vim.g.modifierKey .. "-BS>", function() ResetGuiFont() end, opts)
 
 vim.g.neovide_input_use_logo = 1
