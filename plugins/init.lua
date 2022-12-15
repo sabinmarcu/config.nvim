@@ -1,5 +1,7 @@
 return {
+  { 'folke/tokyonight.nvim' },
   { "ellisonleao/gruvbox.nvim" },
+  { "github/copilot.vim" },
   {
     "kylechui/nvim-surround",
     tag = "*",
