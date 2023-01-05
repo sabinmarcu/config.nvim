@@ -50,4 +50,6 @@ maps.n["<leader>jo"] = { "<cmd>lua require('neotest').output.open({ enter = true
 maps.n["<leader>jS"] = { "<cmd>lua require('neotest').run.stop()<cr>", desc = "Stop" }
 maps.n["<leader>js"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", desc = "Summary" }
 
+maps.n["<leader>gf"] = { "<cmd>DiffviewFileHistory %<cr>", desc = "File History" } 
+
 return maps;

@@ -31,5 +31,12 @@ return {
         }
       })
     end
+  },
+  {
+    'f-person/git-blame.nvim'
+  },
+  { 
+    'sindrets/diffview.nvim', 
+    requires = 'nvim-lua/plenary.nvim' 
   }
 }
