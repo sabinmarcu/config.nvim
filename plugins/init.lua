@@ -1,6 +1,19 @@
 return {
   { 'folke/tokyonight.nvim' },
   { "ellisonleao/gruvbox.nvim" },
+  { "JoosepAlviste/palenightfall.nvim" },
+  {
+    "RRethy/vim-illuminate",
+    config = function()
+      require('illuminate').configure({
+        providers = {
+          'lsp',
+          'treesitter',
+          'regex'
+        }
+      })
+    end
+  },
   { "github/copilot.vim" },
   {
     "kylechui/nvim-surround",
@@ -35,8 +48,8 @@ return {
   {
     'f-person/git-blame.nvim'
   },
-  { 
-    'sindrets/diffview.nvim', 
-    requires = 'nvim-lua/plenary.nvim' 
+  {
+    'sindrets/diffview.nvim',
+    requires = { 'nvim-lua/plenary.nvim' }
   }
 }
