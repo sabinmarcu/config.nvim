@@ -164,6 +164,9 @@ local config = {
 
     -- ESLint Save on Fix
     require('user.custom.eslint')
+
+    -- Extras
+    require('user.custom.extras')
   end,
 }
 
