@@ -6,4 +6,7 @@ return function()
 
   -- ESLint Save on Fix
   require('user.custom.eslint')
+
+  -- Setting env variable
+  require('user.custom.zsh')
 end
