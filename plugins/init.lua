@@ -4,23 +4,11 @@ return {
   { "JoosepAlviste/palenightfall.nvim" },
   {
     "RRethy/vim-illuminate",
-    config = function()
-      require('illuminate').configure({
-        providers = {
-          'lsp',
-          'treesitter',
-          'regex'
-        }
-      })
-    end
   },
   { "github/copilot.vim" },
   {
     "kylechui/nvim-surround",
     tag = "*",
-    config = function()
-      require("nvim-surround").setup()
-    end
   },
   {
     'glacambre/firenvim',
@@ -37,13 +25,6 @@ return {
       "antoinemadec/FixCursorHold.nvim",
       "haydenmeade/neotest-jest",
     },
-    config = function()
-      require('neotest').setup({
-        adapters = {
-          require('neotest-jest'),
-        }
-      })
-    end
   },
   {
     'f-person/git-blame.nvim'
@@ -51,5 +32,23 @@ return {
   {
     'sindrets/diffview.nvim',
     requires = { 'nvim-lua/plenary.nvim' }
-  }
+  },
+  -- { 'wakatime/vim-wakatime' },
+  -- {
+  --   'anuvyklack/pretty-fold.nvim',
+  --   config = function()
+  --     require('pretty-fold').setup()
+  --   end
+  -- },
+  -- {
+  --   'kevinhwang91/nvim-ufo',
+  --   requires = 'kevinhwang91/promise-async',
+  --   config = function()
+  --     require('ufo').setup({
+  --       provider_selector = function()
+  --         return { 'treesitter', 'indent' }
+  --       end
+  --     })
+  --   end
+  -- },
 }
