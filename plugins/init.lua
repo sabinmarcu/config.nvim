@@ -33,6 +33,23 @@ return {
     'sindrets/diffview.nvim',
     requires = { 'nvim-lua/plenary.nvim' }
   },
+  {
+    "ziontee113/icon-picker.nvim",
+    requires = {
+      "stevearc/dressing.nvim"
+    },
+    config = function()
+      require("icon-picker").setup({
+        -- disable_legacy_commands = true
+      })
+    end
+  },
+  {
+    "rafcamlet/nvim-luapad",
+    requires = {
+      "antoinemadec/FixCursorHold.nvim"
+    },
+  },
   -- { 'wakatime/vim-wakatime' },
   -- {
   --   'anuvyklack/pretty-fold.nvim',
