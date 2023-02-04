@@ -50,7 +50,7 @@ return {
       "antoinemadec/FixCursorHold.nvim"
     },
   },
-  -- { 'wakatime/vim-wakatime' },
+  { 'wakatime/vim-wakatime' },
   -- {
   --   'anuvyklack/pretty-fold.nvim',
   --   config = function()
