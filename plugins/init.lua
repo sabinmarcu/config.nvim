@@ -1,14 +1,33 @@
 return {
   { 'folke/tokyonight.nvim' },
-  { "ellisonleao/gruvbox.nvim" },
+  -- { "ellisonleao/gruvbox.nvim" },
+  {
+    'sainnhe/gruvbox-material',
+    config = function()
+      vim.g.gruvbox_material_background = "soft"
+      vim.g.gruvbox_material_better_performance = 1
+    end
+  },
   { "JoosepAlviste/palenightfall.nvim" },
   {
     "RRethy/vim-illuminate",
+    config = function()
+      require('illuminate').configure({
+        providers = {
+          'lsp',
+          'treesitter',
+          'regex'
+        }
+      })
+    end
   },
   { "github/copilot.vim" },
   {
     "kylechui/nvim-surround",
     tag = "*",
+    config = function()
+      require("nvim-surround").setup()
+    end
   },
   {
     'glacambre/firenvim',
@@ -25,6 +44,13 @@ return {
       "antoinemadec/FixCursorHold.nvim",
       "haydenmeade/neotest-jest",
     },
+    config = function()
+      require('neotest').setup({
+        adapters = {
+          require('neotest-jest'),
+        }
+      })
+    end
   },
   {
     'f-person/git-blame.nvim'
@@ -45,10 +71,33 @@ return {
     end
   },
   {
-    "rafcamlet/nvim-luapad",
-    requires = {
-      "antoinemadec/FixCursorHold.nvim"
-    },
+    'sunjon/shade.nvim',
+    config = function()
+      require('shade').setup({
+        overlay_opacity = 70,
+        opacity_step = 2
+      })
+    end
+  },
+  {
+    "folke/twilight.nvim",
+    config = function()
+      require("twilight").setup({
+        treesitter = true,
+        expand = {
+          "function",
+          "method",
+          "table",
+          "if_statement"
+        }
+      })
+    end
+  },
+  {
+    "folke/zen-mode.nvim",
+    config = function()
+      require("zen-mode").setup()
+    end
   },
   { 'wakatime/vim-wakatime' },
   -- {
