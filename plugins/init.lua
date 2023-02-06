@@ -47,8 +47,15 @@ return {
     config = function()
       require('neotest').setup({
         adapters = {
-          require('neotest-jest'),
-        }
+          require('neotest-jest')({
+            jestCommand = "jest --watch ",
+          }),
+          -- require('neotest-vim-test')
+        },
+        output = {
+          enable = true,
+          open_on_run = true,
+        },
       })
     end
   },
