@@ -24,7 +24,6 @@ return {
   { "github/copilot.vim" },
   {
     "kylechui/nvim-surround",
-    tag = "*",
     config = function()
       require("nvim-surround").setup()
     end
@@ -124,4 +123,34 @@ return {
   --     })
   --   end
   -- },
+  {
+     "jose-elias-alvarez/typescript.nvim", -- add lsp plugin
+    {
+      "williamboman/mason-lspconfig.nvim",
+      opts = {
+        ensure_installed = { "tsserver" }, -- automatically install lsp
+      },
+    },
+  },
+   {
+    "sigmasd/deno-nvim", -- add lsp plugin
+    {
+      "williamboman/mason-lspconfig.nvim",
+      opts = {
+        ensure_installed = { "denols" }, -- automatically install lsp
+      },
+    },
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    opts = {
+      ensure_installed = { "lua_ls", "eslint" }, -- automatically install lsp
+    },
+  },
+  {
+     "nvim-treesitter/nvim-treesitter", 
+     opts = {
+       ensure_installed = { "lua", "typescript", "javascript" }
+     }
+  }
 }
