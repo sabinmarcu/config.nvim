@@ -14,7 +14,6 @@ return {
       },
       setup = {
         eslint = function()
-          print("Creating autocmd")
           vim.api.nvim_create_autocmd("BufWritePre", {
             callback = function(event)
               local client = vim.lsp.get_active_clients({ bufnr = event.buf, name = "eslint" })[1]
