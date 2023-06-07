@@ -1,6 +1,11 @@
 return {
   { "JoosepAlviste/palenightfall.nvim" },
-  { "folke/tokyonight.nvim" },
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
   { "ellisonleao/gruvbox.nvim" },
   {
     "sainnhe/gruvbox-material",
@@ -12,7 +17,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "palenightfall",
+      colorscheme = "tokyonight",
     },
   },
 }
