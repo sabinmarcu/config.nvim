@@ -8,7 +8,7 @@ return {
         keys = {
           brightness_up = "<C-Up>",
           brightness_down = "<C-Down>",
-          toggle = "<Leader>uS",
+          toggle = "<leader>uS",
         },
       })
     end,
@@ -29,7 +29,7 @@ return {
     end,
     lazy = false,
     keys = {
-      { "<Leader>ut", "<cmd>Twilight<CR>", desc = "Toggle Twilight" },
+      { "<leader>ut", "<cmd>Twilight<CR>", desc = "Toggle Twilight" },
     },
   },
   {
@@ -39,7 +39,7 @@ return {
     end,
     lazy = false,
     keys = {
-      { "<Leader>uz", "<cmd>ZenMode<CR>", desc = "Toggle Zen Mode" },
+      { "<leader>uz", "<cmd>ZenMode<CR>", desc = "Toggle Zen Mode" },
     },
   },
   {
