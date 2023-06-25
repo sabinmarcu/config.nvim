@@ -51,6 +51,11 @@ return {
     "akinsho/toggleterm.nvim",
     version = "*",
     config = true,
+    opts = {
+      winbar = {
+        enabled = true,
+      },
+    },
     keys = {
       { "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", desc = "ToggleTerm float" },
       { "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", desc = "ToggleTerm vertical split" },
