@@ -34,9 +34,15 @@ return {
   },
   {
     "folke/zen-mode.nvim",
-    config = function()
-      require("zen-mode").setup()
-    end,
+    config = true,
+    opts = {
+      plugins = {
+        options = { enabled = true },
+        twilight = { enabled = true },
+        gmux = { enabled = true },
+        wezterm = { enabled = true, font = "+4" },
+      },
+    },
     lazy = false,
     keys = {
       { "<leader>uz", "<cmd>ZenMode<CR>", desc = "Toggle Zen Mode" },
