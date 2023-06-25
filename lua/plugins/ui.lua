@@ -67,7 +67,14 @@ return {
     },
   },
   {
-    "lewis6991/satellite.nvim",
-    config = true,
+    "dstein64/nvim-scrollview",
+    lazy = false,
+    config = function()
+      require("scrollview").setup({
+        excluded_filetypes = {
+          "neo-tree",
+        },
+      })
+    end,
   },
 }
