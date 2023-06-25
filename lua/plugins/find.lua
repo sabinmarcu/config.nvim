@@ -39,4 +39,8 @@ return {
       })
     end,
   },
+  {
+    "ggandor/leap.nvim",
+    enabled = false,
+  },
 }
