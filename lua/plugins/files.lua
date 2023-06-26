@@ -3,8 +3,10 @@ local targets = {
   default = "source",
   css = "vanilla css",
   stories = "stories",
-  spec = "specs",
-  ["type.spec"] = "type specs",
+  spec = "spec",
+  jest = "jest test",
+  test = "generic test",
+  ["type.spec"] = "type spec",
 }
 
 local mappings = {}
