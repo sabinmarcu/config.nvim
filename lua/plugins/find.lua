@@ -20,14 +20,6 @@ return {
         end,
         desc = "Flash",
       },
-      {
-        "r",
-        mode = "o",
-        function()
-          require("flash").remote()
-        end,
-        desc = "Remote Flash",
-      },
     },
   },
   {
