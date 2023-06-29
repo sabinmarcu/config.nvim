@@ -20,4 +20,5 @@ return {
       colorscheme = "tokyonight",
     },
   },
+  { "nordtheme/vim" },
 }
