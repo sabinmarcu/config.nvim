@@ -1,19 +1,19 @@
 return {
-  {
-    "sunjon/shade.nvim",
-    config = function()
-      require("shade").setup({
-        overlay_opacity = 40,
-        opacity_step = 10,
-        keys = {
-          brightness_up = "<C-Up>",
-          brightness_down = "<C-Down>",
-          toggle = "<leader>uS",
-        },
-      })
-    end,
-    lazy = false,
-  },
+  -- {
+  --   "sunjon/shade.nvim",
+  --   config = function()
+  --     require("shade").setup({
+  --       overlay_opacity = 40,
+  --       opacity_step = 10,
+  --       keys = {
+  --         brightness_up = "<C-Up>",
+  --         brightness_down = "<C-Down>",
+  --         toggle = "<leader>uS",
+  --       },
+  --     })
+  --   end,
+  --   lazy = false,
+  -- },
   {
     "folke/twilight.nvim",
     config = function()
