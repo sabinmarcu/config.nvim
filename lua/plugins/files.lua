@@ -68,7 +68,7 @@ return {
       {
         "<leader>fo",
         function()
-          require("oil").open()
+          require("oil").open_float()
         end,
         desc = "Open in Oil",
       },
