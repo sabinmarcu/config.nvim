@@ -14,11 +14,5 @@ return {
       vim.g.gruvbox_material_better_performance = 1
     end,
   },
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "tokyonight",
-    },
-  },
   { "nordtheme/vim" },
 }

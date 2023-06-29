@@ -7,3 +7,5 @@ foo.*
 *.log
 data
 .luarc.json
+
+lua/plugins/theme.lua
