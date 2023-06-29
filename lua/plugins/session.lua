@@ -9,7 +9,6 @@ return {
     lazy = false,
     opts = {
       log_level = "error",
-
       auto_session_enable_last_session = false,
       auto_session_root_dir = vim.fn.stdpath("data") .. "/sessions/",
       auto_session_enabled = true,
@@ -25,6 +24,10 @@ return {
 
       post_restore_cmds = {
         "Neotree",
+      },
+
+      cwd_change_handling = {
+        restore_upcoming_session = false,
       },
     },
     keys = {
