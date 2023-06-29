@@ -15,4 +15,5 @@ return {
     end,
   },
   { "nordtheme/vim" },
+  { "chriskempson/vim-tomorrow-theme" },
 }
