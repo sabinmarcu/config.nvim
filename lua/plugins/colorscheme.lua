@@ -16,4 +16,5 @@ return {
   },
   { "nordtheme/vim" },
   { "chriskempson/vim-tomorrow-theme" },
+  { "navarasu/onedark.nvim" },
 }
