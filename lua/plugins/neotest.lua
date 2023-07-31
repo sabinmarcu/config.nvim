@@ -26,7 +26,7 @@ return {
         },
         adapters = {
           require("neotest-jest")({
-            jestCommand = "jest --watch ",
+            jestCommand = "yarn test",
             jestConfigFile = "jest.config.mjs",
             jest_test_discovery = true,
             cwd = function(path)
