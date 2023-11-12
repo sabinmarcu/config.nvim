@@ -8,13 +8,31 @@ return {
   {
     "echasnovski/mini.comment",
     event = "VeryLazy",
+    enabled = false,
+    -- config = true,
+    -- opts = {
+    -- ignore_blank_line = true,
+    -- mappings = {
+    -- comment = "<leader>/",
+    -- comment_line = "<leader>/",
+    -- textobject = "gt",
+    -- },
+    -- },
+  },
+  {
+    "numToStr/Comment.nvim",
     opts = {
       mappings = {
-        comment = "<leader>/",
-        comment_line = "<leader>/",
-        textobject = "gt",
+        basic = true,
+      },
+      toggler = {
+        line = "<leader>/",
+      },
+      opleader = {
+        line = "<leader>/",
       },
     },
+    lazy = false,
   },
   {
     "danymat/neogen",
