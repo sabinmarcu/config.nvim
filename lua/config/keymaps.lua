@@ -28,6 +28,6 @@ unmap("n", "<leader>ft", { desc = "Terminal (root dir)" })
 unmap("n", "<leader>fT", { desc = "Terminal (cwd)" })
 unmap("t", "<esc><esc>", { desc = "Enter Normal Mode" })
 
-map("n", "<leader>fp", function()
+map("n", "<leader>yp", function()
   vim.cmd(":let @+ = '" .. vim.fn.expand("%") .. "'")
 end, { desc = "Copy File Path" })
