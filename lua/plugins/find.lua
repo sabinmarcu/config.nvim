@@ -10,18 +10,6 @@ return {
   {
     "folke/flash.nvim",
     enabled = false,
-    -- event = "VeryLazy",
-    -- opts = {},
-    -- keys = {
-    --   {
-    --     "s",
-    --     mode = { "n", "x", "o" },
-    --     function()
-    --       require("flash").jump()
-    --     end,
-    --     desc = "Flash",
-    --   },
-    -- },
   },
   {
     "jinh0/eyeliner.nvim",
@@ -31,9 +19,5 @@ return {
         -- dim = true,
       })
     end,
-  },
-  {
-    "ggandor/leap.nvim",
-    enabled = false,
   },
 }
