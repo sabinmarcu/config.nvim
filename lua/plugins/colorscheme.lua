@@ -16,5 +16,12 @@ return {
   },
   { "nordtheme/vim" },
   { "chriskempson/vim-tomorrow-theme" },
-  { "navarasu/onedark.nvim" },
+  {
+    "navarasu/onedark.nvim",
+    config = function()
+      require("onedark").setup({
+        style = "cool",
+      })
+    end,
+  },
 }
