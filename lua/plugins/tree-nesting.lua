@@ -1,7 +1,6 @@
 local extensions = { "ts", "tsx", "js", "jsx", "mjs", "cjs", "mts", "cts" }
 local midExtensions = { "spec", "test", "css", "type.spec" }
 
-local json = require("json")
 local utils = require("utils")
 local strings = require("strings")
 
