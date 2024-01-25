@@ -18,10 +18,5 @@ return {
   { "chriskempson/vim-tomorrow-theme" },
   {
     "navarasu/onedark.nvim",
-    config = function()
-      require("onedark").setup({
-        style = "cool",
-      })
-    end,
   },
 }
