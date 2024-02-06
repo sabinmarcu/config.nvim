@@ -83,4 +83,14 @@ return {
       })
     end,
   },
+  {
+    "rasulomaroff/reactive.nvim",
+    config = {
+      builtin = {
+        cursorline = true,
+        cursor = true,
+        modemsg = true,
+      },
+    },
+  },
 }
