@@ -52,7 +52,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
-      ensure_installed = { "lua", "typescript", "javascript" },
+      ensure_installed = { "lua", "typescript", "javascript", "markdown", "regex" },
     },
   },
 }
