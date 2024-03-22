@@ -7,17 +7,7 @@ return {
   },
   {
     "echasnovski/mini.comment",
-    event = "VeryLazy",
     enabled = false,
-    -- config = true,
-    -- opts = {
-    -- ignore_blank_line = true,
-    -- mappings = {
-    -- comment = "<leader>/",
-    -- comment_line = "<leader>/",
-    -- textobject = "gt",
-    -- },
-    -- },
   },
   {
     "numToStr/Comment.nvim",
@@ -40,7 +30,7 @@ return {
     config = true,
     keys = {
       {
-        "<leader>cc",
+        "<leader>cD",
         function()
           require("neogen").generate()
         end,
