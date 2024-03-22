@@ -8,10 +8,6 @@ return {
     },
   },
   {
-    "folke/flash.nvim",
-    enabled = false,
-  },
-  {
     "jinh0/eyeliner.nvim",
     config = function()
       require("eyeliner").setup({
