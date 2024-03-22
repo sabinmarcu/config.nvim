@@ -1,4 +1,4 @@
-local extensions = { "ts", "tsx", "js", "jsx" }
+local extensions = { "ts", "tsx", "js", "jsx", "mjs", "cjs" }
 local targets = {
   default = "source",
   css = "vanilla css",
