@@ -1,5 +1,5 @@
-local extensions = { "ts", "tsx", "js", "jsx", "mjs", "cjs", "mts", "cts" }
-local midExtensions = { "spec", "test", "css", "type.spec" }
+local extensions = { "ts", "tsx", "js", "jsx", "mjs", "cjs", "mts", "cts", "mdx" }
+local midExtensions = { "spec", "test", "css", "type", "type.spec", "stories" }
 
 local utils = require("utils")
 local strings = require("strings")
