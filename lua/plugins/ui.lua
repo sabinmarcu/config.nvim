@@ -1,33 +1,10 @@
 return {
-  -- {
-  --   "sunjon/shade.nvim",
-  --   config = function()
-  --     require("shade").setup({
-  --       overlay_opacity = 40,
-  --       opacity_step = 10,
-  --       keys = {
-  --         brightness_up = "<C-Up>",
-  --         brightness_down = "<C-Down>",
-  --         toggle = "<leader>uS",
-  --       },
-  --     })
-  --   end,
-  --   lazy = false,
-  -- },
   {
     "folke/twilight.nvim",
-    config = function()
-      require("twilight").setup({
-        treesitter = true,
-        expand = {
-          "function",
-          "method",
-          "table",
-          "if_statement",
-        },
-      })
-    end,
     lazy = false,
+    opts = {
+      treesitter = true,
+    },
     keys = {
       { "<leader>ut", "<cmd>Twilight<CR>", desc = "Toggle Twilight" },
     },
@@ -39,14 +16,60 @@ return {
       plugins = {
         options = { enabled = true },
         twilight = { enabled = true },
-        gmux = { enabled = true },
-        wezterm = { enabled = true, font = "+4" },
+        wezterm = { enabled = true },
       },
+      on_open = function()
+        vim.cmd("TWEnable")
+      end,
+      on_close = function()
+        vim.cmd("TWDisable")
+      end,
     },
     lazy = false,
     keys = {
       { "<leader>uz", "<cmd>ZenMode<CR>", desc = "Toggle Zen Mode" },
     },
+  },
+  -- {
+  --   "pocco81/true-zen.nvim",
+  --   commit = "98740c76254c65576ec294551028b65081053588",
+  --   lazy = false,
+  --   opts = {
+  --     integrations = {
+  --       twilight = true,
+  --       tmux = true,
+  --     },
+  --     modes = {
+  --       minimalist = {
+  --         ignored_buf_types = { "nofile" }, -- save current options from any window except ones displaying these kinds of buffers
+  --       },
+  --       ataraxis = {
+  --         callbacks = {
+  --           open_pre = function()
+  --             vim.cmd("TWEnable")
+  --           end,
+  --           close_pos = function()
+  --             vim.cmd("TWDisable")
+  --           end,
+  --         },
+  --       },
+  --     },
+  --   },
+  --   keys = {
+  --     { "<leader>zn", mode = { "n" }, "<cmd>TZNarrow<cr>", desc = "Toggle Zen Narrow" },
+  --     { "<leader>zn", mode = { "v" }, "<cmd>'<,'>TZNarrow<cr>", desc = "Toggle Zen Narrow" },
+  --     { "<leader>zf", "<cmd>TZFocus<cr>", desc = "Toggle Zen Focus" },
+  --     { "<leader>zm", "<cmd>TZMinimalist<cr>", desc = "Toggle Zen Minimalist" },
+  --     { "<leader>za", "<cmd>TZAtaraxis<cr>", desc = "Toggle Zen Mode" },
+  --   },
+  -- },
+  {
+    "joshuadanpeterson/typewriter",
+    opts = {
+      enable_with_zen_mode = true,
+      enable_with_true_zen = true,
+    },
+    config = true,
   },
   {
     "RRethy/vim-illuminate",
@@ -92,5 +115,17 @@ return {
         modemsg = true,
       },
     },
+  },
+  {
+    "brenoprata10/nvim-highlight-colors",
+    opts = {
+      enable_named_colors = true,
+      enable_tailwind = true,
+      render = "virtual",
+    },
+    config = true,
+  },
+  {
+    "nvim-zh/colorful-winsep.nvim",
   },
 }
