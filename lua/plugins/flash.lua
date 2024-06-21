@@ -9,7 +9,7 @@ return {
       { "s", mode = { "n", "x", "o" }, false },
       { "S", mode = { "n", "x", "o" }, false },
       {
-        "<m-f>",
+        "<leader>sf",
         mode = { "n", "x", "o" },
         function()
           require("flash").jump()
@@ -17,7 +17,7 @@ return {
         desc = "Flash",
       },
       {
-        "<m-F>",
+        "<leader>sF",
         mode = { "n", "o", "x" },
         function()
           require("flash").treesitter()
@@ -41,7 +41,7 @@ return {
         desc = "Treesitter Search",
       },
       {
-        "<c-s>",
+        "<leader>sv",
         mode = { "c" },
         function()
           require("flash").toggle()
