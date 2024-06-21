@@ -3,3 +3,6 @@
 -- Add any additional options here
 vim.opt.wrap = true
 vim.g.root_spec = { { ".git", "lua" }, "lsp", "cwd" }
+if vim.g.neovide then
+  require("config.neovide")
+end

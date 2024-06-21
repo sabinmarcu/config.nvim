@@ -22,4 +22,13 @@ function M.concat(t1, t2)
   return t1
 end
 
+function M.indexOf(array, value)
+  for i, v in ipairs(array) do
+    if v == value then
+      return i
+    end
+  end
+  return nil
+end
+
 return M
