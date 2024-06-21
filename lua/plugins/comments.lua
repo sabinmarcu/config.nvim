@@ -7,22 +7,18 @@ return {
   },
   {
     "echasnovski/mini.comment",
-    enabled = false,
-  },
-  {
-    "numToStr/Comment.nvim",
     opts = {
       mappings = {
-        basic = true,
-      },
-      toggler = {
-        line = "<leader>/",
-      },
-      opleader = {
-        line = "<leader>/",
+        comment_line = "<leader>/",
+        comment_visual = "<leader>/",
       },
     },
-    lazy = false,
+  },
+  {
+    "folke/ts-comments.nvim",
+    opts = {},
+    event = "VeryLazy",
+    enabled = vim.fn.has("nvim-0.10.0") == 1,
   },
   {
     "danymat/neogen",
