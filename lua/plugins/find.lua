@@ -4,7 +4,13 @@ return {
     "nvim-telescope/telescope.nvim",
     keys = {
       { "<leader>/", false },
-      { "<leader>fw", Util.telescope("live_grep"), desc = "Grep (root dir)" },
+      {
+        "<leader>fw",
+        function()
+          require("telescope").extensions.live_grep_args.live_grep_args()
+        end,
+        desc = "Grep (root dir)",
+      },
     },
   },
   {
