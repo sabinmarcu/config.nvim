@@ -1,4 +1,4 @@
-local extensions = { "ts", "tsx", "js", "jsx", "mjs", "cjs" }
+local extensions = { "ts", "tsx", "js", "jsx", "mjs", "cjs", "css" }
 local targets = {
   default = "source",
   css = "vanilla css",
@@ -6,6 +6,8 @@ local targets = {
   spec = "spec",
   jest = "jest test",
   test = "generic test",
+  type = "type file",
+  mdx = "mdx documentation",
   ["type.spec"] = "type spec",
 }
 
