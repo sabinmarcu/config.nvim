@@ -1,5 +1,32 @@
+local originalVirtualText
+
+local function enableLspLines()
+  local currentVirtualText = vim.diagnostic.config().virtual_text
+  if currentVirtualText and not originalVirtualText then
+    originalVirtualText = currentVirtualText
+  end
+
+  vim.diagnostic.config({ virtual_lines = true, virtual_text = false })
+  return true
+end
+
+local function disableLspLines()
+  local nextVirtualText = originalVirtualText or true
+  vim.diagnostic.config({ virtual_lines = false, virtual_text = nextVirtualText })
+  return false
+end
+
+local function toggleLspLines()
+  local currentVirtualLines = vim.diagnostic.config().virtual_lines
+  if currentVirtualLines then
+    disableLspLines()
+  else
+    enableLspLines()
+  end
+end
+
 return {
-  "sigmasd/deno-nvim", -- add lsp plugin
+  -- "sigmasd/deno-nvim", -- add lsp plugin
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -12,29 +39,11 @@ return {
             },
           },
         },
-        -- jsonls = {
-        --   settings = {
-        --     json = {
-        --       schemas = require("schemastore").json.schemas(),
-        --       validate = { enable = true },
-        --     },
-        --   },
-        -- },
-        -- yamlls = {
-        --   settings = {
-        --     yaml = {
-        --       schemaStore = {
-        --         -- You must disable built-in schemaStore support if you want to use
-        --         -- this plugin and its advanced options like `ignore`.
-        --         enable = false,
-        --         -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-        --         url = "",
-        --       },
-        --       schemas = require("schemastore").yaml.schemas(),
-        --     },
-        --   },
-        -- },
         tsserver = {
+          on_attach = function(client)
+            client.server_capabilities.documentFormattingProvider = false
+            client.server_capabilities.documentRangeFormattingProvider = false
+          end,
           settings = {
             typescript = {
               inlayHints = {
@@ -64,32 +73,41 @@ return {
         },
       },
     },
-    -- dependencies = {
-    --   "b0o/schemastore.nvim",
-    -- },
   },
   {
     "williamboman/mason-lspconfig.nvim",
     opts = {
-      ensure_installed = { "denols", "tsserver", "lua_ls", "eslint" }, -- automatically install lsp
+      ensure_installed = {
+        -- "denols",
+        "tsserver",
+        "lua_ls",
+        "eslint",
+      }, -- automatically install lsp
     },
   },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
-      ensure_installed = { "lua", "typescript", "javascript", "markdown", "regex" },
+      ensure_installed = {
+        "lua",
+        "typescript",
+        "javascript",
+        "regex",
+      },
     },
   },
   {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    config = true,
+    config = function()
+      require("lsp_lines").setup()
+      enableLspLines()
+    end,
+    event = "VeryLazy",
     keys = {
       {
-        "<leader>u",
-        function()
-          require("lsp_lines").toggle()
-        end,
-        desc = "Toggle lsp_lines",
+        "<leader>uv",
+        toggleLspLines,
+        desc = "Toggle LSP Lines",
       },
     },
   },
