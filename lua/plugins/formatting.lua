@@ -138,16 +138,37 @@ return {
       end
 
       opts.formatters = opts.formatters or {}
+      opts.formatters.vtsls = {
+        condition = function()
+          return false
+        end,
+      }
       opts.formatters.prettier = {
         condition = function(_, ctx)
-          print(
-            vim.g.lazyvim_prettier_needs_config,
-            M.has_config(ctx),
-            vim.g.lazyvim_prettier_needs_config ~= true or M.has_config(ctx)
-          )
           return M.has_parser(ctx) and (vim.g.lazyvim_prettier_needs_config ~= true or M.has_config(ctx))
         end,
       }
     end,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        vtsls = {
+          settings = {
+            typescript = {
+              format = {
+                enable = false,
+              },
+            },
+            javascript = {
+              format = {
+                enable = false,
+              },
+            },
+          },
+        },
+      },
+    },
   },
 }
