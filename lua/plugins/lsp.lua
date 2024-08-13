@@ -4,6 +4,11 @@ return {
     opts = {
       inlay_hints = { enabled = true },
       servers = {
+        eslint = {
+          experimental = {
+            useFlatConfig = true,
+          },
+        },
         lua_ls = {
           settings = {
             Lua = {
