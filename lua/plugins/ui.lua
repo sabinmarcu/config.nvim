@@ -120,7 +120,6 @@ return {
     "brenoprata10/nvim-highlight-colors",
     opts = {
       enable_named_colors = true,
-      enable_tailwind = true,
       render = "virtual",
     },
     config = true,
