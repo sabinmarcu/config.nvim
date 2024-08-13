@@ -8,6 +8,10 @@ local targets = {
   test = "generic test",
   type = "type file",
   mdx = "mdx documentation",
+  utils = "untilities",
+  constants = "constants",
+  style = "styles",
+  styles = "styles",
   ["type.spec"] = "type spec",
 }
 
