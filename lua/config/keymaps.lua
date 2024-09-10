@@ -16,6 +16,8 @@ mapping.map("n", "<leader>h", "<C-w>h", { desc = "Left Pane" })
 mapping.map("n", "<leader>j", "<C-w>j", { desc = "Down Pane" })
 mapping.map("n", "<leader>k", "<C-w>k", { desc = "Up Pane" })
 
+mapping.map("n", "rr", "<cmd>e %<cr>", { desc = "Refresh Buffer" })
+
 if vim.g.neovide then
   require("config.guikeymaps")
 end
