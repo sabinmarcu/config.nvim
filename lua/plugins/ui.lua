@@ -16,7 +16,7 @@ return {
       plugins = {
         options = { enabled = true },
         twilight = { enabled = true },
-        wezterm = { enabled = true },
+        wezterm = { enabled = false },
       },
       on_open = function()
         vim.cmd("TWEnable")
