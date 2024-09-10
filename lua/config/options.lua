@@ -4,6 +4,7 @@
 vim.opt.wrap = true
 vim.g.root_spec = { { ".git", "lua" }, "lsp", "cwd" }
 vim.g.lazyvim_prettier_needs_config = true
+vim.o.autoread = true
 
 if vim.g.neovide then
   require("config.neovide")
