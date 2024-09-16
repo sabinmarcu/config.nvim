@@ -21,7 +21,7 @@ return {
         function()
           require("oil").open()
         end,
-        desc = "Open in Oil",
+        desc = "Open in Oil (replace buffer)",
       },
     },
   },
