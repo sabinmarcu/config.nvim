@@ -128,10 +128,6 @@ return {
     "nvim-zh/colorful-winsep.nvim",
   },
   {
-    "lukas-reineke/indent-blankline.nvim",
-    enabled = false,
-  },
-  {
     "shellRaining/hlchunk.nvim",
     event = { "BufReadPre", "BufNewFile" },
     config = true,
@@ -173,7 +169,21 @@ return {
       local indent = indentMod(config[mode])
 
       local isEnabled = true
-      indent:enable()
+      local toggle = function(state)
+        if state then
+          print("Enabling")
+          isEnabled = true
+          indent:enable()
+          require("ibl").setup_buffer(0, { enabled = false })
+        else
+          print("Disabling")
+          isEnabled = false
+          indent:disable()
+          require("ibl").setup_buffer(0, { enabled = true })
+        end
+      end
+
+      toggle(true)
 
       ---@diagnostic disable-next-line: undefined-global
       LazyVim.toggle.map("<leader>ug", {
@@ -181,15 +191,7 @@ return {
         get = function()
           return isEnabled
         end,
-        set = function(state)
-          if state then
-            indent:enable()
-            isEnabled = true
-          else
-            indent:disable()
-            isEnabled = false
-          end
-        end,
+        set = toggle,
       })
     end,
   },
