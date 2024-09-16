@@ -127,4 +127,70 @@ return {
   {
     "nvim-zh/colorful-winsep.nvim",
   },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    enabled = false,
+  },
+  {
+    "shellRaining/hlchunk.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = true,
+    opts = function()
+      local mode = "chunk"
+
+      local config = {
+        chunk = {
+          priority = 15,
+          style = {
+            { fg = "#806d9c" },
+            { fg = "#c21f30" },
+          },
+          use_treesitter = true,
+          chars = {
+            horizontal_line = "─",
+            vertical_line = "│",
+            left_top = "╭",
+            left_bottom = "╰",
+            right_arrow = ">",
+          },
+          textobject = "",
+          max_file_size = 1024 * 1024,
+          error_sign = true,
+          -- animation related
+          duration = 0,
+          delay = 0,
+        },
+        line_num = {
+          style = "#806d9c",
+          priority = 10,
+          use_treesitter = false,
+        },
+      }
+
+      require("hlchunk").setup(config)
+
+      local indentMod = require("hlchunk.mods." .. mode)
+      local indent = indentMod(config[mode])
+
+      local isEnabled = true
+      indent:enable()
+
+      ---@diagnostic disable-next-line: undefined-global
+      LazyVim.toggle.map("<leader>ug", {
+        name = "Indention Guides",
+        get = function()
+          return isEnabled
+        end,
+        set = function(state)
+          if state then
+            indent:enable()
+            isEnabled = true
+          else
+            indent:disable()
+            isEnabled = false
+          end
+        end,
+      })
+    end,
+  },
 }
