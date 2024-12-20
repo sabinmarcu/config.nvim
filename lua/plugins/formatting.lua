@@ -6,7 +6,8 @@ local root_has_file = function(files)
   end
 end
 
-local eslint_root_files = { ".eslintrc", ".eslintrc.js", ".eslintrc.json" }
+local eslint_root_files =
+  { ".eslintrc", ".eslintrc.js", ".eslintrc.json", "eslint.config.js", "eslint.config.mjs", "eslint.config.cjs" }
 local prettier_root_files = { ".prettierrc", ".prettierrc.js", ".prettierrc.json" }
 local stylua_root_files = { "stylua.toml", ".stylua.toml" }
 local elm_root_files = { "elm.json" }
@@ -81,6 +82,72 @@ function M.has_parser(ctx)
   return ok and parser and parser ~= vim.NIL
 end
 
+local tsOverrides = {
+  settings = {
+    javascript = {
+      format = {
+        enable = false,
+        insertSpaceAfterCommaDelimiter = false,
+        insertSpaceAfterConstructor = false,
+        insertSpaceAfterFunctionKeywordForAnonymousFunctions = false,
+        insertSpaceAfterKeywordsInControlFlowStatements = false,
+        insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = false,
+        insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces = false,
+        insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false,
+        insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets = false,
+        insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis = false,
+        insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces = false,
+        insertSpaceAfterSemicolonInForStatements = false,
+        insertSpaceBeforeAndAfterBinaryOperators = false,
+        insertSpaceBeforeFunctionParenthesis = false,
+        placeOpenBraceOnNewLineForControlBlocks = false,
+        placeOpenBraceOnNewLineForFunctions = false,
+        semicolons = false,
+      },
+    },
+    typescript = {
+      indentSwitchCase = false,
+      insertSpaceAfterCommaDelimiter = false,
+      insertSpaceAfterConstructor = false,
+      insertSpaceAfterFunctionKeywordForAnonymousFunctions = false,
+      insertSpaceAfterKeywordsInControlFlowStatements = false,
+      insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = false,
+      insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces = false,
+      insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false,
+      insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets = false,
+      insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis = false,
+      insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces = false,
+      insertSpaceAfterSemicolonInForStatements = false,
+      typeAssertion = false,
+      insertSpaceBeforeAndAfterBinaryOperators = false,
+      insertSpaceBeforeFunctionParenthesis = false,
+      placeOpenBraceOnNewLineForControlBlocks = false,
+      placeOpenBraceOnNewLineForFunctions = false,
+      semicolons = false,
+    },
+    vtsls = {
+      javascript = {
+        baseIndentSize = false,
+        convertTabsToSpaces = false,
+        indentSize = false,
+        indentStyle = false,
+        newLineCharacter = false,
+        tabSize = false,
+        trimTrailingWhitespace = false,
+      },
+      typescript = {
+        baseIndentSize = false,
+        convertTabsToSpaces = false,
+        indentSize = false,
+        indentStyle = false,
+        newLineCharacter = false,
+        tabSize = false,
+        trimTrailingWhitespace = false,
+      },
+    },
+  },
+}
+
 return {
   {
     "nvimtools/none-ls.nvim",
@@ -96,19 +163,13 @@ return {
       end
 
       local localSources = {
-        -- null_ls.builtins.diagnostics.eslint_d.with(ownOpts.eslint_diagnostics),
-        -- null_ls.builtins.formatting.eslint_d.with(ownOpts.eslint_formatting),
         null_ls.builtins.formatting.prettier.with(ownOpts.prettier_formatting),
         null_ls.builtins.formatting.stylua.with(ownOpts.stylua_formatting),
-        -- null_ls.builtins.code_actions.eslint_d.with(ownOpts.eslint_diagnostics),
       }
 
       local builtinsToReplace = {
-        -- null_ls.builtins.diagnostics.eslint_d,
-        -- null_ls.builtins.formatting.eslint_d,
         null_ls.builtins.formatting.prettier,
         null_ls.builtins.formatting.stylua,
-        -- null_ls.builtins.code_actions.eslint_d,
       }
 
       opts.sources = opts.sources or {}
@@ -125,6 +186,7 @@ return {
       for _, localSource in ipairs(localSources) do
         table.insert(opts.sources, localSource)
       end
+
       opts.on_attach = on_attach
     end,
   },
@@ -132,20 +194,15 @@ return {
     "stevearc/conform.nvim",
     optional = true,
     opts = function(_, opts)
-      opts.formatters_by_ft = opts.formatters_by_ft or {}
-      for _, ft in ipairs(supported) do
-        opts.formatters_by_ft[ft] = { "prettier" }
-      end
-
       opts.formatters = opts.formatters or {}
+      local typescriptFormatters =
+        { "eslint_d", "eslint", "prettier_d", "prettier", stop_after_first = true, lsp_format = "fallback" }
+      for _, ft in ipairs(supported) do
+        opts.formatters[ft] = typescriptFormatters
+      end
       opts.formatters.vtsls = {
         condition = function()
           return false
-        end,
-      }
-      opts.formatters.prettier = {
-        condition = function(_, ctx)
-          return M.has_parser(ctx) and (vim.g.lazyvim_prettier_needs_config ~= true or M.has_config(ctx))
         end,
       }
     end,
@@ -154,20 +211,7 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        vtsls = {
-          settings = {
-            typescript = {
-              format = {
-                enable = false,
-              },
-            },
-            javascript = {
-              format = {
-                enable = false,
-              },
-            },
-          },
-        },
+        vtsls = tsOverrides,
       },
     },
   },
