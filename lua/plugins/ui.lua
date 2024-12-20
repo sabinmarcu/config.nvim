@@ -16,7 +16,8 @@ return {
       plugins = {
         options = { enabled = true },
         twilight = { enabled = true },
-        wezterm = { enabled = false },
+        wezterm = { enabled = true, font = "+4" },
+        tmux = { enabled = true },
       },
       on_open = function()
         vim.cmd("TWEnable")
@@ -31,10 +32,37 @@ return {
     },
   },
   {
-    "joshuadanpeterson/typewriter",
+    "folke/snacks.nvim",
+    ---@type snacks.Config
+    opts = {
+      zen = {
+        on_open = function()
+          vim.cmd("TWEnable")
+        end,
+        on_close = function()
+          vim.cmd("TWDisable")
+        end,
+      },
+    },
+    keys = {
+      {
+        "<leader>uZ",
+        function()
+          require("snacks").zen()
+        end,
+        desc = "Toggle Zen Mode (new)",
+      },
+    },
+  },
+  {
+    "sabinmarcu/typewriter.nvim",
+    requires = "nvim-treesitter/nvim-treesitter",
     opts = {
       enable_with_zen_mode = true,
-      enable_with_true_zen = true,
+      enable_with_true_zen = false,
+      keep_cursor_position = true,
+      enable_notifications = true,
+      enable_horizontal_scroll = false,
     },
     config = true,
   },
