@@ -30,7 +30,7 @@ return {
         function()
           require("flash").remote()
         end,
-        desc = "Remote Flash",
+        desc = "Remofe Flash",
       },
       {
         "R",

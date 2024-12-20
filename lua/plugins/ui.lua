@@ -30,39 +30,6 @@ return {
       { "<leader>uz", "<cmd>ZenMode<CR>", desc = "Toggle Zen Mode" },
     },
   },
-  -- {
-  --   "pocco81/true-zen.nvim",
-  --   commit = "98740c76254c65576ec294551028b65081053588",
-  --   lazy = false,
-  --   opts = {
-  --     integrations = {
-  --       twilight = true,
-  --       tmux = true,
-  --     },
-  --     modes = {
-  --       minimalist = {
-  --         ignored_buf_types = { "nofile" }, -- save current options from any window except ones displaying these kinds of buffers
-  --       },
-  --       ataraxis = {
-  --         callbacks = {
-  --           open_pre = function()
-  --             vim.cmd("TWEnable")
-  --           end,
-  --           close_pos = function()
-  --             vim.cmd("TWDisable")
-  --           end,
-  --         },
-  --       },
-  --     },
-  --   },
-  --   keys = {
-  --     { "<leader>zn", mode = { "n" }, "<cmd>TZNarrow<cr>", desc = "Toggle Zen Narrow" },
-  --     { "<leader>zn", mode = { "v" }, "<cmd>'<,'>TZNarrow<cr>", desc = "Toggle Zen Narrow" },
-  --     { "<leader>zf", "<cmd>TZFocus<cr>", desc = "Toggle Zen Focus" },
-  --     { "<leader>zm", "<cmd>TZMinimalist<cr>", desc = "Toggle Zen Minimalist" },
-  --     { "<leader>za", "<cmd>TZAtaraxis<cr>", desc = "Toggle Zen Mode" },
-  --   },
-  -- },
   {
     "joshuadanpeterson/typewriter",
     opts = {
@@ -126,12 +93,6 @@ return {
   },
   {
     "nvim-zh/colorful-winsep.nvim",
-  },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "LazyFile",
-    main = "ibl",
-    commit = "18603eb949eba08300799f64027af11ef922283f",
   },
   {
     "shellRaining/hlchunk.nvim",

@@ -1,18 +1,4 @@
-local Util = require("lazyvim.util")
 return {
-  {
-    "nvim-telescope/telescope.nvim",
-    keys = {
-      { "<leader>/", false },
-      {
-        "<leader>fw",
-        function()
-          require("telescope").extensions.live_grep_args.live_grep_args()
-        end,
-        desc = "Grep (root dir)",
-      },
-    },
-  },
   {
     "jinh0/eyeliner.nvim",
     config = function()
@@ -21,5 +7,19 @@ return {
         -- dim = true,
       })
     end,
+  },
+  {
+
+    "ibhagwan/fzf-lua",
+    keys = {
+      { "<leader>fw", LazyVim.pick("live_grep"), desc = "Grep (Root Dir)" },
+    },
+    opts = {
+      grep = {
+        rg_glob = true,
+        glob_flag = "--iglob",
+        glob_separator = "%s%-%-",
+      },
+    },
   },
 }
