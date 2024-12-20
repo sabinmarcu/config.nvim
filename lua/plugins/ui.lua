@@ -128,10 +128,15 @@ return {
     "nvim-zh/colorful-winsep.nvim",
   },
   {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "LazyFile",
+    main = "ibl",
+    commit = "18603eb949eba08300799f64027af11ef922283f",
+  },
+  {
     "shellRaining/hlchunk.nvim",
     event = { "BufReadPre", "BufNewFile" },
-    config = true,
-    opts = function()
+    config = function()
       local mode = "chunk"
 
       local config = {
@@ -171,28 +176,26 @@ return {
       local isEnabled = true
       local toggle = function(state)
         if state then
-          print("Enabling")
           isEnabled = true
           indent:enable()
-          require("ibl").setup_buffer(0, { enabled = false })
+          require("ibl").setup_buffer(0, { enabled = true })
         else
-          print("Disabling")
           isEnabled = false
           indent:disable()
-          require("ibl").setup_buffer(0, { enabled = true })
+          require("ibl").setup_buffer(0, { enabled = false })
         end
       end
 
       toggle(true)
 
       ---@diagnostic disable-next-line: undefined-global
-      LazyVim.toggle.map("<leader>ug", {
+      Snacks.toggle({
         name = "Indention Guides",
         get = function()
           return isEnabled
         end,
         set = toggle,
-      })
+      }):map("<leader>ug")
     end,
   },
 }

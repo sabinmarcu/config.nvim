@@ -1,19 +1,23 @@
 return {
-  -- {
-  --   "JoosepAlviste/palenightfall.nvim",
-  --   config = true,
-  --   opts = {
-  --     tranparent = true,
-  --   },
-  -- },
+  {
+    "JoosepAlviste/palenightfall.nvim",
+    config = true,
+    opts = {
+      tranparent = true,
+    },
+  },
   { "sainnhe/everforest" },
   {
     "folke/tokyonight.nvim",
     lazy = false,
-    priority = 1000,
+    priority = 1,
     opts = {},
   },
-  { "ellisonleao/gruvbox.nvim" },
+  {
+    "ellisonleao/gruvbox.nvim",
+    lazy = false,
+    priority = 1,
+  },
   {
     "sainnhe/gruvbox-material",
     config = function()
@@ -25,9 +29,15 @@ return {
   { "chriskempson/vim-tomorrow-theme" },
 
   { "navarasu/onedark.nvim" },
-  { "EdenEast/nightfox.nvim" },
+  {
+    "EdenEast/nightfox.nvim",
+    lazy = false,
+    priority = 1,
+  },
   {
     "rebelot/kanagawa.nvim",
+    lazy = false,
+    priority = 1,
     config = true,
     opts = {
       compile = true, -- enable compiling the colorscheme
@@ -81,7 +91,7 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    priority = 1000,
+    priority = 1,
     lazy = true,
     config = true,
     opts = {
@@ -158,7 +168,7 @@ return {
   },
   {
     "qaptoR-nvim/chocolatier.nvim",
-    priority = 1000,
+    priority = 1,
     config = true,
     opts = {
       terminal_colors = true, -- add neovim terminal colors
@@ -187,9 +197,10 @@ return {
   },
   {
     "LazyVim/LazyVim",
+    lazy = false,
+    priority = 1,
     opts = {
-      colorscheme = "catppuccin",
-      -- colorscheme = "chocolatier",
+      colorscheme = "onedark",
     },
   },
 }

@@ -1,10 +1,9 @@
 -- stylua: ignore
-local Util = require("lazyvim.util")
 local mapping = require("mapping")
 
-mapping.unmap("n", "<leader>ft", { desc = "Terminal (root dir)" })
-mapping.unmap("n", "<leader>fT", { desc = "Terminal (cwd)" })
-mapping.unmap("t", "<esc><esc>", { desc = "Enter Normal Mode" })
+-- mapping.unmap("n", "<leader>ft", { desc = "Terminal (root dir)" })
+-- mapping.unmap("n", "<leader>fT", { desc = "Terminal (cwd)" })
+-- mapping.unmap("t", "<esc><esc>", { desc = "Enter Normal Mode" })
 
 mapping.map("n", "<leader>yp", function()
   vim.cmd(":let @+ = '" .. vim.fn.expand("%") .. "'")
