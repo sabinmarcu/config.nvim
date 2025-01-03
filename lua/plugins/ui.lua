@@ -55,14 +55,11 @@ return {
     },
   },
   {
-    "sabinmarcu/typewriter.nvim",
+    "joshuadanpeterson/typewriter.nvim",
     requires = "nvim-treesitter/nvim-treesitter",
     opts = {
       enable_with_zen_mode = true,
       enable_with_true_zen = false,
-      keep_cursor_position = true,
-      enable_notifications = true,
-      enable_horizontal_scroll = false,
     },
     config = true,
   },
