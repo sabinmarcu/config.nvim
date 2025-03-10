@@ -109,6 +109,11 @@ return {
     },
   },
   {
+    "rachartier/tiny-glimmer.nvim",
+    event = "VeryLazy",
+    config = true,
+  },
+  {
     "brenoprata10/nvim-highlight-colors",
     opts = {
       enable_named_colors = true,
