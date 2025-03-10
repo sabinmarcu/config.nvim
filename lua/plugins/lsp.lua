@@ -1,3 +1,6 @@
+-- stylua: ignore
+local mapping = require("mapping")
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -34,11 +37,29 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "lua",
-        "regex",
-      },
-    },
+    opts = function()
+      ---@class ParserInfo[]
+      local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
+
+      parser_configs.lua_patterns = {
+        install_info = {
+          url = "https://github.com/OXY2DEV/tree-sitter-lua_patterns",
+          files = { "src/parser.c" },
+          branch = "main",
+        },
+      }
+
+      return {
+        ensure_installed = {
+          "lua",
+          "lua_patterns",
+          "regex",
+          "kdl",
+        },
+      }
+    end,
+  },
+  {
+    "OXY2DEV/patterns.nvim",
   },
 }
