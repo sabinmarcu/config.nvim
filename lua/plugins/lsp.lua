@@ -21,6 +21,7 @@ return {
     keys = {
       { "<leader>L", desc = "+lsp" },
       { "<leader>Lr", "<cmd>LspRestart<cr>", desc = "LSP Restart" },
+      { "<leader>Li", "<cmd>LspInfo<cr>", desc = "LSP Info" },
     },
   },
   {
