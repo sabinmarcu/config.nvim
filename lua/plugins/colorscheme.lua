@@ -200,7 +200,7 @@ return {
     lazy = false,
     priority = 1,
     opts = {
-      colorscheme = "onedark",
+      colorscheme = "catppuccin",
     },
   },
 }

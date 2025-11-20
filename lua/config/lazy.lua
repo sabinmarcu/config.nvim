@@ -6,6 +6,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
+vim.g.maplocalleader = "."
+
 require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
@@ -15,6 +17,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.util.project" },
     { import = "plugins" },
   },
+  concurrency = jit.os:find("Windows") and (vim.uv.available_parallelism() * 2) or 100,
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
     -- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.

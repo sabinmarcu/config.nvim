@@ -7,7 +7,7 @@ return {
     dependencies = {
       {
         "nvim-neotest/neotest-jest",
-        -- "marilari88/neotest-vitest",
+        "marilari88/neotest-vitest",
         -- "sabinmarcu/neotest-jest",
         -- dir = "~/Projects/Personal/neotest-jest/",
       },

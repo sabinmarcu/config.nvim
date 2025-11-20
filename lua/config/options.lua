@@ -7,6 +7,9 @@ vim.g.lazyvim_prettier_needs_config = true
 vim.o.autoread = true
 vim.g.ai_cmp = false
 
+vim.g.mapleader = " "
+vim.g.maplocalleader = "."
+
 if vim.g.neovide then
   require("config.neovide")
 end

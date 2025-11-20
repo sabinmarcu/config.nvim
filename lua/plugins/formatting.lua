@@ -1,3 +1,4 @@
+local json = require("json")
 local utils = require("utils")
 
 local root_has_file = function(files)
@@ -106,43 +107,50 @@ local tsOverrides = {
       },
     },
     typescript = {
-      indentSwitchCase = false,
-      insertSpaceAfterCommaDelimiter = false,
-      insertSpaceAfterConstructor = false,
-      insertSpaceAfterFunctionKeywordForAnonymousFunctions = false,
-      insertSpaceAfterKeywordsInControlFlowStatements = false,
-      insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = false,
-      insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces = false,
-      insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false,
-      insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets = false,
-      insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis = false,
-      insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces = false,
-      insertSpaceAfterSemicolonInForStatements = false,
-      typeAssertion = false,
-      insertSpaceBeforeAndAfterBinaryOperators = false,
-      insertSpaceBeforeFunctionParenthesis = false,
-      placeOpenBraceOnNewLineForControlBlocks = false,
-      placeOpenBraceOnNewLineForFunctions = false,
-      semicolons = false,
+      format = {
+        enable = false,
+        indentSwitchCase = false,
+        insertSpaceAfterCommaDelimiter = false,
+        insertSpaceAfterConstructor = false,
+        insertSpaceAfterFunctionKeywordForAnonymousFunctions = false,
+        insertSpaceAfterKeywordsInControlFlowStatements = false,
+        insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = false,
+        insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces = false,
+        insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false,
+        insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets = false,
+        insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis = false,
+        insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces = false,
+        insertSpaceAfterSemicolonInForStatements = false,
+        typeAssertion = false,
+        insertSpaceBeforeAndAfterBinaryOperators = false,
+        insertSpaceBeforeFunctionParenthesis = false,
+        placeOpenBraceOnNewLineForControlBlocks = false,
+        placeOpenBraceOnNewLineForFunctions = false,
+        semicolons = false,
+      },
     },
     vtsls = {
       javascript = {
-        baseIndentSize = false,
-        convertTabsToSpaces = false,
-        indentSize = false,
-        indentStyle = false,
-        newLineCharacter = false,
-        tabSize = false,
-        trimTrailingWhitespace = false,
+        format = {
+          baseIndentSize = false,
+          convertTabsToSpaces = false,
+          indentSize = false,
+          indentStyle = false,
+          newLineCharacter = false,
+          tabSize = false,
+          trimTrailingWhitespace = false,
+        },
       },
       typescript = {
-        baseIndentSize = false,
-        convertTabsToSpaces = false,
-        indentSize = false,
-        indentStyle = false,
-        newLineCharacter = false,
-        tabSize = false,
-        trimTrailingWhitespace = false,
+        format = {
+          baseIndentSize = false,
+          convertTabsToSpaces = false,
+          indentSize = false,
+          indentStyle = false,
+          newLineCharacter = false,
+          tabSize = false,
+          trimTrailingWhitespace = false,
+        },
       },
     },
   },
@@ -196,15 +204,11 @@ return {
     opts = function(_, opts)
       opts.formatters = opts.formatters or {}
       local typescriptFormatters =
-        { "eslint_d", "eslint", "prettier_d", "prettier", stop_after_first = true, lsp_format = "fallback" }
+        { "eslint_d", "eslint", "prettier_d", "prettier", stop_after_first = true, lsp_format = "never" }
       for _, ft in ipairs(supported) do
         opts.formatters[ft] = typescriptFormatters
       end
-      opts.formatters.vtsls = {
-        condition = function()
-          return false
-        end,
-      }
+      return opts
     end,
   },
   {

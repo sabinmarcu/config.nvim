@@ -12,18 +12,10 @@ return {
     },
   },
   {
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason-lspconfig.nvim",
     opts = {
       ensure_installed = {
         "emmet-language-server",
-      }, -- automatically install lsp
-    },
-  },
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        ["emmet_language_server"] = {},
       },
     },
   },

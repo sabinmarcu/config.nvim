@@ -1,9 +1,14 @@
-local util = require("lspconfig.util")
+local LazyVim = require("lazyvim.util")
+-- local json = require("json")
+--
+-- vim.lsp.set_log_level("trace")
+-- require("vim.lsp.log").set_format_func(vim.inspect)
 
 local function get_typescript_server_path(root_dir)
   local project_root = vim.fs.dirname(vim.fs.find("node_modules", { path = root_dir, upward = true })[1])
   return project_root and (project_root .. "/node_modules/typescript/lib") or ""
 end
+
 return {
   {
     "iamcco/markdown-preview.nvim",
@@ -15,54 +20,55 @@ return {
     ft = { "markdown", "markdown.mdx" },
   },
   {
-    "nvim-treesitter/nvim-treesitter",
+    "davidmh/mdx.nvim",
+    config = true,
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+  },
+  {
+    "mason-org/mason-lspconfig.nvim",
     opts = {
       ensure_installed = {
-        "markdown",
+        "mdx_analyzer",
       },
     },
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = function(_, opts)
+      table.insert(opts.servers.vtsls.filetypes, "mdx")
+      table.insert(opts.servers.vtsls.filetypes, "markdown.mdx")
 
-      vim.filetype.add({
-        extension = {
-          mdx = "markdown.mdx",
-          ["markdown.mdx"] = "mdx",
+      LazyVim.extend(opts.servers.vtsls, "settings.vtsls.tsserver.globalPlugins", {
+        {
+          name = "@mdx-js/typescript-plugin",
+          enableForWorkspaceTypeScriptVersions = true,
+          languages = {
+            "mdx",
+          },
         },
       })
-      vim.treesitter.language.register("javascript", "markdown.mdx")
     end,
   },
   {
     "neovim/nvim-lspconfig",
-    opts = function()
-      return {
-        servers = {
-          ["mdx_analyzer"] = {
-            filetypes = { "markdown.mdx" },
-            root_dir = util.root_pattern(".yarnrc.yml", "node_modules/typescript", ".git", "package.json"),
-            single_file_support = true,
-            settings = {},
-            init_options = {
-              typescript = {},
-            },
-            on_new_config = function(new_config, new_root_dir)
-              if vim.tbl_get(new_config.init_options, "typescript") and not new_config.init_options.typescript.tsdk then
-                new_config.init_options.typescript.tsdk = get_typescript_server_path(new_root_dir)
-              end
-            end,
+    opts = {
+      mdx_analyzer = {
+        settings = {
+          checkMdx = true,
+        },
+        init_options = {
+          typescript = {
+            enabled = true,
           },
         },
-      }
-    end,
-  },
-  {
-    "stevearc/conform.nvim",
-    optional = true,
-    opts = {
-      formatters_by_ft = {
-        ["markdown"] = { "prettier", "markdown-toc" },
-        ["markdown.mdx"] = { "prettier", "markdown-toc" },
+        on_new_config = function(new_config, new_root_dir)
+          if vim.tbl_get(new_config.init_options, "typescript") then
+            new_config.init_options.typescript.enabled = true
+            if not new_config.init_options.typescript.tsdk then
+              new_config.init_options.typescript.tsdk = get_typescript_server_path(new_root_dir)
+            end
+          end
+        end,
       },
     },
   },

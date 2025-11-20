@@ -25,12 +25,13 @@ return {
     },
   },
   {
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason-lspconfig.nvim",
     opts = {
       ensure_installed = {
         "lua_ls",
         "eslint",
       },
+      automatic_installation = true,
     },
   },
   {

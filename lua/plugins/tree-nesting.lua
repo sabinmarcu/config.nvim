@@ -61,6 +61,10 @@ local baseMappings = {
     pattern = "^jest%.config%.(.*)$",
     files = utils.concat({ "wallaby.js" }, strings.addExtensions("jest.*", extensions)),
   },
+  ["vitest_config"] = {
+    pattern = "^vitest%.config%.(.*)$",
+    files = strings.addExtensions("vitest.*", extensions),
+  },
 }
 
 local function getCodeMappings()

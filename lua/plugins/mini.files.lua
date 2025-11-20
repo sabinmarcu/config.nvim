@@ -1,15 +1,22 @@
 return {
+  -- {
+  --   "nvim-neo-tree/neo-tree.nvim",
+  --   keys = {
+  --     { "<leader>fm", "<leader>fe", desc = "Explorer NeoTree (Root Dir)", remap = true },
+  --     { "<leader>fM", "<leader>fE", desc = "Explorer NeoTree (cwd)", remap = true },
+  --     { "<leader>e", false },
+  --     { "<leader>E", false },
+  --   },
+  -- },
   {
-    "nvim-neo-tree/neo-tree.nvim",
+    "folke/snacks.nvim",
     keys = {
-      { "<leader>fm", "<leader>fe", desc = "Explorer NeoTree (Root Dir)", remap = true },
-      { "<leader>fM", "<leader>fE", desc = "Explorer NeoTree (cwd)", remap = true },
       { "<leader>e", false },
       { "<leader>E", false },
     },
   },
   {
-    "echasnovski/mini.files",
+    "nvim-mini/mini.files",
     keys = {
       {
         "<leader>e",

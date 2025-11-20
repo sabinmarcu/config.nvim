@@ -8,7 +8,7 @@ return {
     config = true,
   },
   {
-    "echasnovski/mini.icons",
+    "nvim-mini/mini.icons",
     opts = {
       file = {
         ["eslint.config.mjs"] = { glyph = "󰱺", hl = "MiniIconsYellow" },

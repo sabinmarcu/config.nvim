@@ -54,15 +54,14 @@ return {
       },
     },
   },
-  {
-    "joshuadanpeterson/typewriter.nvim",
-    requires = "nvim-treesitter/nvim-treesitter",
-    opts = {
-      enable_with_zen_mode = true,
-      enable_with_true_zen = false,
-    },
-    config = true,
-  },
+  -- {
+  --   "joshuadanpeterson/typewriter.nvim",
+  --   requires = "nvim-treesitter/nvim-treesitter",
+  --   opts = {
+  --     enable_with_zen_mode = true,
+  --     enable_with_true_zen = false,
+  --   },
+  --   config = true, },
   {
     "RRethy/vim-illuminate",
     config = function()
