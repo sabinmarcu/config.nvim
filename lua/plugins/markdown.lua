@@ -1,8 +1,4 @@
 local LazyVim = require("lazyvim.util")
--- local json = require("json")
---
--- vim.lsp.set_log_level("trace")
--- require("vim.lsp.log").set_format_func(vim.inspect)
 
 local function get_typescript_server_path(root_dir)
   local project_root = vim.fs.dirname(vim.fs.find("node_modules", { path = root_dir, upward = true })[1])
@@ -10,15 +6,6 @@ local function get_typescript_server_path(root_dir)
 end
 
 return {
-  {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    build = "cd app && yarn install",
-    init = function()
-      vim.g.mkdp_filetypes = { "markdown", "markdown.mdx" }
-    end,
-    ft = { "markdown", "markdown.mdx" },
-  },
   {
     "davidmh/mdx.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
