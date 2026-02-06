@@ -34,9 +34,6 @@ local ownOpts = {
     condition = root_has_file(elm_root_files),
   },
 }
----
----@alias ConformCtx {buf: number, filename: string, dirname: string}
-local M = {}
 
 local supported = {
   "css",
@@ -55,105 +52,6 @@ local supported = {
   "typescriptreact",
   "vue",
   "yaml",
-}
-
---- Checks if a Prettier config file exists for the given context
----@param ctx ConformCtx
-function M.has_config(ctx)
-  vim.fn.system({ "prettier", "--find-config-path", ctx.filename })
-  return vim.v.shell_error == 0
-end
-
---- Checks if a parser can be inferred for the given context:
---- * If the filetype is in the supported list, return true
---- * Otherwise, check if a parser can be inferred
----@param ctx ConformCtx
-function M.has_parser(ctx)
-  local ft = vim.bo[ctx.buf].filetype --[[@as string]]
-  -- default filetypes are always supported
-  if vim.tbl_contains(supported, ft) then
-    return true
-  end
-  -- otherwise, check if a parser can be inferred
-  local ret = vim.fn.system({ "prettier", "--file-info", ctx.filename })
-  ---@type boolean, string?
-  local ok, parser = pcall(function()
-    return vim.fn.json_decode(ret).inferredParser
-  end)
-  return ok and parser and parser ~= vim.NIL
-end
-
-local tsOverrides = {
-  settings = {
-    javascript = {
-      format = {
-        enable = false,
-        insertSpaceAfterCommaDelimiter = false,
-        insertSpaceAfterConstructor = false,
-        insertSpaceAfterFunctionKeywordForAnonymousFunctions = false,
-        insertSpaceAfterKeywordsInControlFlowStatements = false,
-        insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = false,
-        insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces = false,
-        insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false,
-        insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets = false,
-        insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis = false,
-        insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces = false,
-        insertSpaceAfterSemicolonInForStatements = false,
-        insertSpaceBeforeAndAfterBinaryOperators = false,
-        insertSpaceBeforeFunctionParenthesis = false,
-        placeOpenBraceOnNewLineForControlBlocks = false,
-        placeOpenBraceOnNewLineForFunctions = false,
-        semicolons = false,
-      },
-    },
-    typescript = {
-      format = {
-        enable = false,
-        indentSwitchCase = false,
-        insertSpaceAfterCommaDelimiter = false,
-        insertSpaceAfterConstructor = false,
-        insertSpaceAfterFunctionKeywordForAnonymousFunctions = false,
-        insertSpaceAfterKeywordsInControlFlowStatements = false,
-        insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = false,
-        insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces = false,
-        insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false,
-        insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets = false,
-        insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis = false,
-        insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces = false,
-        insertSpaceAfterSemicolonInForStatements = false,
-        typeAssertion = false,
-        insertSpaceBeforeAndAfterBinaryOperators = false,
-        insertSpaceBeforeFunctionParenthesis = false,
-        placeOpenBraceOnNewLineForControlBlocks = false,
-        placeOpenBraceOnNewLineForFunctions = false,
-        semicolons = false,
-      },
-    },
-    vtsls = {
-      javascript = {
-        format = {
-          baseIndentSize = false,
-          convertTabsToSpaces = false,
-          indentSize = false,
-          indentStyle = false,
-          newLineCharacter = false,
-          tabSize = false,
-          trimTrailingWhitespace = false,
-        },
-      },
-      typescript = {
-        format = {
-          baseIndentSize = false,
-          convertTabsToSpaces = false,
-          indentSize = false,
-          indentStyle = false,
-          newLineCharacter = false,
-          tabSize = false,
-          trimTrailingWhitespace = false,
-        },
-      },
-    },
-  },
 }
 
 return {
@@ -215,7 +113,18 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        vtsls = tsOverrides,
+        eslint = {},
+      },
+      setup = {
+        eslint = function()
+          Snacks.util.lsp.on({}, function(_, client)
+            if client.name == "eslint" then
+              client.server_capabilities.documentFormattingProvider = true
+            elseif client.name == "vtsls" then
+              client.server_capabilities.documentFormattingProvider = false
+            end
+          end)
+        end,
       },
     },
   },
