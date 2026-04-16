@@ -120,72 +120,7 @@ return {
     },
     config = true,
   },
-  {
-    "nvim-zh/colorful-winsep.nvim",
-  },
-  {
-    "shellRaining/hlchunk.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      local mode = "chunk"
-
-      local config = {
-        chunk = {
-          priority = 15,
-          style = {
-            { fg = "#806d9c" },
-            { fg = "#c21f30" },
-          },
-          use_treesitter = true,
-          chars = {
-            horizontal_line = "─",
-            vertical_line = "│",
-            left_top = "╭",
-            left_bottom = "╰",
-            right_arrow = ">",
-          },
-          textobject = "",
-          max_file_size = 1024 * 1024,
-          error_sign = true,
-          -- animation related
-          duration = 0,
-          delay = 0,
-        },
-        line_num = {
-          style = "#806d9c",
-          priority = 10,
-          use_treesitter = false,
-        },
-      }
-
-      require("hlchunk").setup(config)
-
-      local indentMod = require("hlchunk.mods." .. mode)
-      local indent = indentMod(config[mode])
-
-      local isEnabled = true
-      local toggle = function(state)
-        if state then
-          isEnabled = true
-          indent:enable()
-          require("ibl").setup_buffer(0, { enabled = true })
-        else
-          isEnabled = false
-          indent:disable()
-          require("ibl").setup_buffer(0, { enabled = false })
-        end
-      end
-
-      toggle(true)
-
-      ---@diagnostic disable-next-line: undefined-global
-      Snacks.toggle({
-        name = "Indention Guides",
-        get = function()
-          return isEnabled
-        end,
-        set = toggle,
-      }):map("<leader>ug")
-    end,
-  },
+  -- {
+  --   "nvim-zh/colorful-winsep.nvim",
+  -- },
 }
