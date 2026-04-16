@@ -16,7 +16,7 @@ return {
   {
     "kylechui/nvim-surround",
     enabled = true,
-    version = "*",
+    version = "^3",
     event = "VeryLazy",
     config = true,
     vscode = true,
