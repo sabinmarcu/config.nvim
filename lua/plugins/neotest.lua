@@ -6,8 +6,10 @@ return {
     "nvim-neotest/neotest",
     dependencies = {
       {
-        "nvim-neotest/neotest-jest",
-        "marilari88/neotest-vitest",
+        "nvim-neotest/nvim-nio",
+        "nvim-lua/plenary.nvim",
+        -- "antoinemadec/FixCursorHold.nvim",
+        "nvim-treesitter/nvim-treesitter",
         -- "sabinmarcu/neotest-jest",
         -- dir = "~/Projects/Personal/neotest-jest/",
       },
